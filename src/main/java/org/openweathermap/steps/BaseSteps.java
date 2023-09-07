@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.openweathermap.helpers.DataGenerator;
 import org.openweathermap.pages.MainPage;
+import org.openweathermap.pages.QuestionBlock;
 import org.openweathermap.pages.SignInPage;
 import org.openweathermap.pages.SignUpPage;
 import static com.codeborne.selenide.Selenide.*;
@@ -17,6 +18,7 @@ public class BaseSteps extends BaseSeleniumTest {
     MainPage mainPage = new MainPage();
     SignInPage signInPage = new SignInPage();
     SignUpPage signUpPage = new SignUpPage();
+    QuestionBlock questionBlock = new QuestionBlock();
     DataGenerator dataGenerator = new DataGenerator();
     private final String GENERATED_PASSWORD = generateNewPassword();
 
@@ -128,5 +130,15 @@ public class BaseSteps extends BaseSeleniumTest {
     @And("Нажать на кнопку Подтвердить")
     public void нажатьНаКнопкуПодтвердить() {
         signUpPage.clickOnAcceptCaptchaButton();
+    }
+
+    @And("Нажать на кнопку Create Account")
+    public void нажатьНаКнопкуCreateAccount() {
+        signUpPage.clickOnTheCreateAccountButton();
+    }
+
+    @Then("Попап question block отображается на странице")
+    public void попапQuestionBlockОтображаетсяНаСтранице() {
+        questionBlock.questionBlockIsLoaded();
     }
 }

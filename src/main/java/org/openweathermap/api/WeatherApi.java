@@ -1,13 +1,8 @@
 package org.openweathermap.api;
 
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.openweathermap.pages.MainPage;
-import org.openweathermap.steps.BaseSteps;
 
 import static com.codeborne.selenide.Selenide.open;
 import static io.restassured.RestAssured.given;
@@ -22,8 +17,7 @@ public class WeatherApi {
         mainPage.enterDataToTheSearchContainer(loadProperty("CityName"));
         mainPage.clickOnTheSearchButton();
         mainPage.selectCityFromTheDropDown(1);
-        String searchedCityName = mainPage.getSelectedCity();
-        return searchedCityName;
+        return mainPage.getSelectedCity();
     }
     public String getApiCityName(){
         String body = given().contentType(ContentType.HTML)
