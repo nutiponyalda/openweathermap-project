@@ -12,7 +12,7 @@ public class MainPage {
     private WebElement searchButton = $x("//div[@class=\"search\"]//button[@type=\"submit\"]");
     private WebElement nameOfSelectedCity = $x("//h2[@data-v-3e6e9f12=\"\"]");
     private WebElement signInButton = $x("//a[text()='Sign in']");
-    private ElementsCollection searchResult = $$x("//ul[@class=\"search-dropdown-menu\"]");
+    private ElementsCollection searchResult = $$x("//ul[@class='search-dropdown-menu']/li");
 
 
 
@@ -23,9 +23,13 @@ public class MainPage {
         searchButton.click();
     }
 
-    public void selectCityFromTheDropDown(int numberOfCity){
-       int elementNumber = numberOfCity - 1;
-        searchResult.get(elementNumber).click();
+    public void selectCityFromTheDropDown(int numberOfCity) {
+        int elementNumber = numberOfCity - 1;
+        if (elementNumber >= 0 && elementNumber < searchResult.size()) {
+            searchResult.get(elementNumber).click();
+        } else {
+            System.out.println("Некорректный номер города: " + numberOfCity);
+        }
     }
 
     public String getSelectedCity (){
