@@ -36,7 +36,6 @@ public class BaseSteps extends BaseSeleniumTest {
     }
 
     @И("^выполнено ожидание в течение (\\d+) (?:секунд|секунды)")
-    @And("^waiting for (\\d+) (?:second|seconds)$")
     public void waitForSeconds(long seconds) {
         sleep(1000 * seconds);
     }
@@ -51,7 +50,6 @@ public class BaseSteps extends BaseSeleniumTest {
     public void нажатьНаКнопкуПоиска() {
         mainPage.clickOnTheSearchButton();
     }
-
 
     @And("Выбрать {int} город в результате поиска")
     public void выбратьГородВРезультатеПоиска(int cityNumber) {
